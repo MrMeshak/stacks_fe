@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 import z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { AxiosError } from 'axios';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -12,6 +15,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
+import { httpClient } from '@/axios';
 
 const loginFormSchema = z.object({
   email: z.string().min(1, 'Required').email('Invalid email'),
@@ -23,12 +28,42 @@ type LoginFormSchema = z.infer<typeof loginFormSchema>;
 export interface ILoginFormProps {}
 
 export default function LoginForm(props: ILoginFormProps) {
-  const form = useForm<LoginFormSchema>({
-    resolver: zodResolver(loginFormSchema),
+  const navigate = useNavigate();
+
+  const loginMutation = useMutation({
+    mutationFn: async (data: LoginFormSchema) => {
+      return await httpClient.post('/auth/login', data);
+    },
+    onSuccess: () => {
+      navigate('/');
+    },
+    onError: (error) => {
+      console.log(error);
+
+      if (error instanceof AxiosError) {
+        setError('root', { message: error.response?.data.message });
+        return;
+      }
+
+      setError('root', { message: 'Oops, something went wrong' });
+    },
   });
 
+  const form = useForm<LoginFormSchema>({
+    resolver: zodResolver(loginFormSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const {
+    formState: { errors },
+    setError,
+  } = form;
+
   const onSubmit = (values: LoginFormSchema) => {
-    console.log(values);
+    loginMutation.mutate(values);
   };
 
   return (
@@ -44,8 +79,8 @@ export default function LoginForm(props: ILoginFormProps) {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="" {...field} />
-              </FormControl>{' '}
+                <Input {...field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
@@ -58,15 +93,20 @@ export default function LoginForm(props: ILoginFormProps) {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="" {...field} />
-              </FormControl>{' '}
+                <Input type="password" {...field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="mt-4">
-          Login
-        </Button>
+        <div className="mt-4 flex flex-col gap-2">
+          <Button type="submit">Login</Button>
+          {errors.root && (
+            <Alert className="text-muted-forground bg-slate-100">
+              <AlertDescription>{errors.root.message}</AlertDescription>
+            </Alert>
+          )}
+        </div>
       </form>
     </Form>
   );
