@@ -1,6 +1,4 @@
-import LoginCard from '@/components/login/loginCard';
 import SignupCard from '@/components/signup/signupCard';
-import * as React from 'react';
 
 export interface ISignupPageProps {}
 
