@@ -19,7 +19,10 @@ export interface Project {
   stackOrder: string[];
   createdAt: string;
   updatedAt: string;
+  stacks: { id: string }[];
 }
+
+export interface Stack {}
 
 export async function fetchProjects() {
   return await httpClient.get<Project[]>('/projects');
