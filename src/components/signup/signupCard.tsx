@@ -6,29 +6,29 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import LoginForm from './loginForm';
+} from '../ui/card';
+import SignupForm from './signupForm';
 
-export interface ILoginCardProps {}
+export interface ISignupCardProps {}
 
-export default function LoginCard(props: ILoginCardProps) {
+export default function SignupCard(props: ISignupCardProps) {
   return (
     <Card className="flex h-fit w-full max-w-96 flex-col justify-between">
       <CardHeader>
-        <CardTitle>Login</CardTitle>
+        <CardTitle>Sign Up</CardTitle>
         <CardDescription>Login to your account</CardDescription>
       </CardHeader>
       <CardContent>
-        <LoginForm />
+        <SignupForm />
       </CardContent>
       <CardFooter>
-        <p className="text-sm text-muted-foreground">
-          Don't have an account?{' '}
+        <p className="text-muted-forground text-sm">
+          Already have an account?{' '}
           <Link
             className="font-semibold text-foreground hover:underline"
-            to="/signup"
+            to="/login"
           >
-            Sign Up
+            Log In
           </Link>
         </p>
       </CardFooter>
