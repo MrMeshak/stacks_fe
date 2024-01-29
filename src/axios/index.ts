@@ -22,9 +22,7 @@ export interface Project {
 }
 
 export async function fetchProjects() {
-  return await httpClient.get<Project[]>('/projects', {
-    withCredentials: true,
-  });
+  return await httpClient.get<Project[]>('/projects');
 }
 
 export async function fetchProject(projectId: string) {
