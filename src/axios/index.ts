@@ -19,15 +19,48 @@ export interface Project {
   stackOrder: string[];
   createdAt: string;
   updatedAt: string;
-  stacks: { id: string }[];
+  stacks: Pick<Stack, 'id'>[];
 }
 
-export interface Stack {}
+export interface Stack {
+  id: string;
+  userId: string;
+  projectId: string;
+  title: string;
+  color: string;
+  taskOrder: string[];
+  createAt: string;
+  updatedAt: string;
+  tasks: Omit<Task, 'subTasks'>[];
+}
+
+export interface Task {
+  id: string;
+  userId: string;
+  stackId: string;
+  description: string;
+  completed: boolean;
+  priority: string;
+  status: string;
+  startDate: string;
+  dueDate: string;
+  timeEstimate: string;
+  subTaskOrder: string;
+  createdAt: string;
+  updatedAt: string;
+  subTasks: subTask[];
+}
+
+export interface subTask {}
 
 export async function fetchProjects() {
   return await httpClient.get<Project[]>('/projects');
 }
 
-export async function fetchProject(projectId: string) {
+export async function fetchProjectById(projectId: string) {
   return await httpClient.get<Project>(`/projects/${projectId}`);
+}
+
+export async function fetchStackById(stackId: string) {
+  return await httpClient.get<Stack>(`/stacks/${stackId}`);
 }

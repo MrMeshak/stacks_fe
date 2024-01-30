@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import ProjectTopBar from '@/components/project/projectTopBar';
 import ProjectBoardWithData from '@/components/project/projectBoardWithData';
 

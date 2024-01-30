@@ -1,6 +1,5 @@
-import { fetchProject } from '@/axios';
+import { fetchProjectById } from '@/axios';
 import { useQuery } from '@tanstack/react-query';
-import * as React from 'react';
 import ProjectBoard from './projectBoard';
 
 export interface IProjectBoardProps {
@@ -12,7 +11,7 @@ export default function ProjectBoardWithData({
 }: IProjectBoardProps) {
   const projectQuery = useQuery({
     queryKey: ['projects', projectId],
-    queryFn: () => fetchProject(projectId),
+    queryFn: () => fetchProjectById(projectId),
   });
 
   if (projectQuery.isLoading) {
@@ -25,5 +24,5 @@ export default function ProjectBoardWithData({
 
   const projectData = projectQuery.data?.data;
 
-  return projectData && <ProjectBoard stacks={projectData.stacks} />;
+  return projectData && <ProjectBoard projectData={projectData} />;
 }
