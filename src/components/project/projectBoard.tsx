@@ -11,15 +11,13 @@ export default function ProjectBoard({ projectData }: IProjectBoardProps) {
   const stacks = projectData.stacks;
 
   return (
-    <div className="">
-      <ScrollArea className="h-80 h-screen bg-slate-50">
-        <div className=" flex h-screen  space-x-4  p-4 pt-[4rem]">
-          {stacks.map((stack) => (
-            <StackCardWithData key={stack.id} stackId={stack.id} />
-          ))}
-        </div>
-        <ScrollBar orientation="horizontal" />
-      </ScrollArea>
-    </div>
+    <ScrollArea className="h-[calc(100vh-3.3rem)] w-full bg-slate-50">
+      <div className=" flex space-x-4 p-4 ">
+        {stacks.map((stack) => (
+          <StackCardWithData key={stack.id} stackId={stack.id} />
+        ))}
+      </div>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   );
 }
