@@ -31,7 +31,7 @@ export default function ProjectPage(props: IProjectPageProps) {
           handleSideBarButton={toggleSideBarOpen}
         />
         <div>
-          <ProjectTopBar projectId={projectId} />
+          <ProjectTopBar projectId={projectId} isSideBarOpen={isSideBarOpen} />
           <ProjectBoardWithData projectId={projectId} />
         </div>
       </div>

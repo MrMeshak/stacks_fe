@@ -2,10 +2,8 @@ import * as React from 'react';
 import {
   RiAddLine,
   RiAppsFill,
-  RiArrowLeftCircleFill,
   RiArrowLeftSLine,
-  RiArrowRightSLine,
-  RiBasketballFill,
+  RiMenuFill,
 } from 'react-icons/ri';
 import { Separator } from '../ui/separator';
 import { Button } from '../ui/button';
@@ -46,14 +44,17 @@ export default function ProjectSideBar({
       </div>
 
       <Button
-        variant="outline"
-        className={`absolute bottom-3 right-0 z-30 h-8 w-8 ${isSideBarOpen ? 'translate-x-1/2' : ' translate-x-10'} rounded-full px-0 py-0 transition-all`}
+        variant={isSideBarOpen ? 'outline' : 'ghost'}
+        className={`absolute right-0 top-[0.7rem] z-30 h-8 w-8 ${isSideBarOpen ? 'translate-x-1/2' : 'translate-x-10'}  px-0 py-0 transition-all`}
         onClick={() => handleSideBarButton()}
       >
         {isSideBarOpen ? (
           <RiArrowLeftSLine className="h-8 w-8 text-muted-foreground" />
         ) : (
-          <RiArrowRightSLine className="h-8 w-8 text-muted-foreground" />
+          <RiMenuFill
+            className="h-6 w-6 text-muted-foreground"
+            strokeWidth={1}
+          />
         )}
       </Button>
     </div>
