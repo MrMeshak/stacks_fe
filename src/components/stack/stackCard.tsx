@@ -25,7 +25,7 @@ export default function StackCard({ stackData }: IStackCardProps) {
           </div>
           <div className=" flex items-center justify-center">
             <Button variant="ghost" className="h-6 w-6 rounded-sm px-0 py-0">
-              <RiAddFill className="h-5 w-5 text-muted-foreground" />
+              <RiAddFill className="h-5 w-5 text-primary" />
             </Button>
           </div>
         </div>

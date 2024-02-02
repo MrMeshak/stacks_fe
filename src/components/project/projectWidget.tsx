@@ -1,7 +1,7 @@
 import { Project } from '@/axios';
-import { Button } from '../ui/button';
-import { RiAddLine } from 'react-icons/ri';
+
 import { Link } from 'react-router-dom';
+import ProjectCreateProjectModal from './projectCreateProjectModal';
 
 export interface IProjectWidgetProps {
   projectId: string;
@@ -15,10 +15,8 @@ export default function ProjectWidget({
   return (
     <div className="w-full p-4">
       <div className="flex items-center justify-between pb-4">
-        <h3 className="font-semibold text-slate-300">Projects</h3>
-        <Button variant="ghost" className="h-6 w-6 px-0 py-0">
-          <RiAddLine className="h-5 w-5 text-slate-300" />
-        </Button>
+        <h3 className="font-semibold text-primary">Projects</h3>
+        <ProjectCreateProjectModal />
       </div>
       <ul>
         {projects.map((project) => (
