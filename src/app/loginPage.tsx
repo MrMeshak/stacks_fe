@@ -1,12 +1,4 @@
 import LoginCard from '@/components/login/loginCard';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import * as React from 'react';
 
 export interface ILoginPageProps {}
 
