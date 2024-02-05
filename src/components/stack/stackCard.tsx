@@ -11,7 +11,7 @@ export interface IStackCardProps {
 export default function StackCard({ stackData }: IStackCardProps) {
   return (
     <div className="flex flex-col justify-between">
-      <ScrollArea className="w-80">
+      <div className="w-80">
         <div className=" flex w-full justify-between rounded-sm border-[1px] border-slate-200 bg-white px-2 py-2">
           <div className="flex items-center gap-3">
             <div
@@ -29,15 +29,18 @@ export default function StackCard({ stackData }: IStackCardProps) {
             </Button>
           </div>
         </div>
+      </div>
+      <ScrollArea className="h-full">
+        <div></div>
       </ScrollArea>
-      <Button
+      {/* <Button
         variant="secondary"
         size="sm"
         className="w-full justify-start text-muted-foreground"
       >
         <RiAddFill className="h-4 w-4" />
         <p>Add task</p>
-      </Button>
+      </Button> */}
     </div>
   );
 }

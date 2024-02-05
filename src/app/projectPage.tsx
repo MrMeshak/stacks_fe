@@ -1,19 +1,14 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProjectTopBar from '@/components/project/projectTopBar';
 import ProjectBoardWithData from '@/components/project/projectBoardWithData';
 import ProjectSideBar from '@/components/project/projectSideBar';
+import { useProjectPageIsSideBarOpen } from '@/store/projectPageStore/projectPageStore';
 
 export interface IProjectPageProps {}
 
 export default function ProjectPage(props: IProjectPageProps) {
   const { projectId } = useParams();
-
-  const [isSideBarOpen, setIsSideBarOpen] = useState(true);
-
-  const toggleSideBarOpen = () => {
-    setIsSideBarOpen(!isSideBarOpen);
-  };
+  const isSideBarOpen = useProjectPageIsSideBarOpen();
 
   if (!projectId) {
     return;
@@ -24,13 +19,9 @@ export default function ProjectPage(props: IProjectPageProps) {
       <div
         className={`grid ${isSideBarOpen ? 'grid-cols-[minmax(15rem,15rem)_minmax(0,_10fr)]' : 'grid-cols-[minmax(0rem,0rem)_minmax(0,_10fr)]'} transition-all`}
       >
-        <ProjectSideBar
-          projectId={projectId}
-          isSideBarOpen={isSideBarOpen}
-          handleSideBarButton={toggleSideBarOpen}
-        />
+        <ProjectSideBar projectId={projectId} />
         <div>
-          <ProjectTopBar projectId={projectId} isSideBarOpen={isSideBarOpen} />
+          <ProjectTopBar projectId={projectId} />
           <ProjectBoardWithData projectId={projectId} />
         </div>
       </div>

@@ -3,7 +3,6 @@ import {
   DialogContent,
   DialogTitle,
   DialogTrigger,
-  DialogFooter,
   DialogHeader,
 } from '../ui/dialog';
 import { RiAddLine } from 'react-icons/ri';
