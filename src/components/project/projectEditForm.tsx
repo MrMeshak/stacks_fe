@@ -1,7 +1,6 @@
-import { z } from 'zod';
-import { Project, httpClient } from '@/axios';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 import {
   Form,
   FormControl,
@@ -11,45 +10,44 @@ import {
   FormMessage,
 } from '../ui/form';
 import { Input } from '../ui/input';
-import { Alert, AlertDescription } from '../ui/alert';
 import { Button } from '../ui/button';
-import {
-  QueryClient,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { Alert, AlertDescription } from '../ui/alert';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Project, httpClient } from '@/axios';
 import { AxiosError } from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 
-export interface IProjectDeleteFormProps {
+const editProjectFormSchema = z.object({
+  title: z.string().min(1, 'required'),
+});
+
+type EditProjectFormSchema = z.infer<typeof editProjectFormSchema>;
+
+export interface IProjectEditFormProps {
   projectData: Project;
+  onSuccess: () => void;
 }
 
-export default function ProjectDeleteForm({
+export default function ProjectEditForm({
   projectData,
-}: IProjectDeleteFormProps) {
+  onSuccess,
+}: IProjectEditFormProps) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const deleteProjectFormSchema = z
-    .object({
-      title: z.string().min(1, 'required'),
-    })
-    .refine((data) => data.title === projectData.title, {
-      message: 'Project title did not match',
-      path: ['title'],
-    });
-  type DeleteProjectFormSchema = z.infer<typeof deleteProjectFormSchema>;
-
-  const deleteProjectMutation = useMutation({
-    mutationFn: async (data: DeleteProjectFormSchema) => {
-      return await httpClient.delete(`/projects/${projectData.id}`);
+  const updateProjectQuery = useMutation({
+    mutationFn: async (data: EditProjectFormSchema) => {
+      await httpClient.put(`/projects/${projectData.id}`, data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
+        queryKey: ['projects'],
+        exact: true,
+      });
+      queryClient.invalidateQueries({
         queryKey: ['projects', projectData.id],
       });
-      navigate('/projects');
+      onSuccess();
     },
     onError: (error) => {
       if (error instanceof AxiosError) {
@@ -60,10 +58,10 @@ export default function ProjectDeleteForm({
     },
   });
 
-  const form = useForm<DeleteProjectFormSchema>({
-    resolver: zodResolver(deleteProjectFormSchema),
+  const form = useForm<EditProjectFormSchema>({
+    resolver: zodResolver(editProjectFormSchema),
     defaultValues: {
-      title: '',
+      title: projectData.title,
     },
   });
 
@@ -72,8 +70,8 @@ export default function ProjectDeleteForm({
     setError,
   } = form;
 
-  const onSubmit = (values: DeleteProjectFormSchema) => {
-    deleteProjectMutation.mutate(values);
+  const onSubmit = (values: EditProjectFormSchema) => {
+    updateProjectQuery.mutate(values);
   };
 
   return (
@@ -84,9 +82,7 @@ export default function ProjectDeleteForm({
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                To confirm, type "{projectData.title}" in the box below
-              </FormLabel>
+              <FormLabel>Title</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -95,9 +91,7 @@ export default function ProjectDeleteForm({
           )}
         />
         <div className="mt-4 flex flex-col gap-2">
-          <Button variant="destructive" className="w-fit">
-            Delete
-          </Button>
+          <Button className="w-fit">Save</Button>
           {errors.root && (
             <Alert className="bg-slate-100 text-muted-foreground">
               <AlertDescription>{errors.root.message}</AlertDescription>
