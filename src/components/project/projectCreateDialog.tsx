@@ -7,14 +7,12 @@ import {
 } from '../ui/dialog';
 import { RiAddLine } from 'react-icons/ri';
 import { Button } from '../ui/button';
-import ProjectCreateProjectForm from './projectCreateProjectForm';
+import ProjectCreateForm from './projectCreateForm';
 import { useState } from 'react';
 
-export interface IProjectCreateProjectModalProps {}
+export interface IProjectCreateDialogProps {}
 
-export default function ProjectCreateProjectModal(
-  props: IProjectCreateProjectModalProps,
-) {
+export default function ProjectCreateDialog(props: IProjectCreateDialogProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -29,7 +27,7 @@ export default function ProjectCreateProjectModal(
           <DialogHeader>
             <DialogTitle>Create Project</DialogTitle>
           </DialogHeader>
-          <ProjectCreateProjectForm onSuccess={() => setOpen(false)} />
+          <ProjectCreateForm onSuccess={() => setOpen(false)} />
         </DialogContent>
       </Dialog>
     </>

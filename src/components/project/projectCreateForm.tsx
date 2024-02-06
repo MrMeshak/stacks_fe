@@ -22,13 +22,13 @@ const createProjectFormSchema = z.object({
 
 type CreateProjectFormSchema = z.infer<typeof createProjectFormSchema>;
 
-export interface IProjectCreateProjectFormProps {
+export interface IProjectCreateFormProps {
   onSuccess: () => void;
 }
 
-export default function ProjectCreateProjectForm({
+export default function ProjectCreateForm({
   onSuccess,
-}: IProjectCreateProjectFormProps) {
+}: IProjectCreateFormProps) {
   const queryClient = useQueryClient();
   const createProjectMutation = useMutation({
     mutationFn: async (data: CreateProjectFormSchema) => {

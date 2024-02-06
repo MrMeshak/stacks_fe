@@ -1,7 +1,7 @@
 import { Project } from '@/axios';
 
 import { Link } from 'react-router-dom';
-import ProjectCreateProjectModal from './projectCreateProjectModal';
+import ProjectCreateDialog from './projectCreateDialog';
 
 export interface IProjectWidgetProps {
   projectId: string;
@@ -16,7 +16,7 @@ export default function ProjectWidget({
     <div className="w-full p-4">
       <div className="flex items-center justify-between pb-4">
         <h3 className="font-semibold text-primary">Projects</h3>
-        <ProjectCreateProjectModal />
+        <ProjectCreateDialog />
       </div>
       <ul>
         {projects.map((project) => (
