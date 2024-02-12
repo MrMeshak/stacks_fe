@@ -156,7 +156,7 @@ export default function SignupForm(props: ISignupFormProps) {
         <div className="mt-4 flex flex-col gap-2">
           <Button type="submit">Signup</Button>
           {errors.root && (
-            <Alert className="text-muted-forground bg-slate-100">
+            <Alert className="bg-slate-100 text-muted-foreground">
               <AlertDescription>{errors.root.message}</AlertDescription>
             </Alert>
           )}
