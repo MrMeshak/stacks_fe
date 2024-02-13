@@ -3,6 +3,7 @@ import ProjectTopBar from '@/components/project/projectTopBar';
 import ProjectBoardWithData from '@/components/project/projectBoardWithData';
 import ProjectSideBar from '@/components/project/projectSideBar';
 import { useProjectPageIsSideBarOpen } from '@/store/projectPageStore/projectPageStore';
+import ProjectDndProvider from '@/components/project/projectDndProvider';
 
 export interface IProjectPageProps {}
 
@@ -22,7 +23,9 @@ export default function ProjectPage(props: IProjectPageProps) {
         <ProjectSideBar projectId={projectId} />
         <div>
           <ProjectTopBar projectId={projectId} />
-          <ProjectBoardWithData projectId={projectId} />
+          <ProjectDndProvider projectId={projectId}>
+            <ProjectBoardWithData projectId={projectId} />
+          </ProjectDndProvider>
         </div>
       </div>
     </div>
