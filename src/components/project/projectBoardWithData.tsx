@@ -1,6 +1,7 @@
 import { fetchProjectById } from '@/axios';
 import { useQuery } from '@tanstack/react-query';
 import ProjectBoard from './projectBoard';
+import ProjectDndProvider from './projectDndProvider';
 
 export interface IProjectBoardProps {
   projectId: string;
