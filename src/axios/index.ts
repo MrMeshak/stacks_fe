@@ -38,6 +38,7 @@ export interface Task {
   id: string;
   userId: string;
   stackId: string;
+  title: string;
   description: string;
   completed: boolean;
   priority: string;
@@ -48,7 +49,6 @@ export interface Task {
   subTaskOrder: string;
   createdAt: string;
   updatedAt: string;
-  subTasks: subTask[];
 }
 
 export interface subTask {}

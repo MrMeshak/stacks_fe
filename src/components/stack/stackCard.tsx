@@ -4,6 +4,7 @@ import { Button } from '../ui/button';
 import { ScrollArea } from '../ui/scroll-area';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import TaskCard from '../task/taskCard';
 
 export interface IStackCardProps {
   stackData: Stack;
@@ -38,7 +39,7 @@ export default function StackCard({ stackData }: IStackCardProps) {
       style={style}
       className="flex w-80 flex-col justify-between"
     >
-      <div {...attributes} {...listeners} className="w-full">
+      <div {...attributes} {...listeners} className="mb-4 w-full">
         <div className=" flex w-full justify-between rounded-sm border-[1px] border-slate-200 bg-white px-2 py-2">
           <div className="flex items-center gap-3">
             <div
@@ -59,9 +60,9 @@ export default function StackCard({ stackData }: IStackCardProps) {
       </div>
 
       <ScrollArea className="h-full">
-        <div>{stackData.id}</div>
-        <div>Task 1</div>
-        <div>Task 2</div>
+        {stackData.tasks.map((taskData) => (
+          <TaskCard key={taskData.id} taskData={taskData} />
+        ))}
       </ScrollArea>
     </div>
   );
