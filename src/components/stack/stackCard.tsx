@@ -1,7 +1,7 @@
 import { Stack } from '@/axios';
 import { RiAddFill } from 'react-icons/ri';
 import { Button } from '../ui/button';
-import { ScrollArea } from '../ui/scroll-area';
+import { ScrollArea, ScrollBar } from '../ui/scroll-area';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import TaskCard from '../task/taskCard';
@@ -27,7 +27,10 @@ export default function StackCard({ stackData }: IStackCardProps) {
     animateLayoutChanges: () => false,
   });
 
-  const style = { transition, transform: CSS.Transform.toString(transform) };
+  const style = {
+    transition: transition,
+    transform: CSS.Transform.toString(transform),
+  };
 
   if (isDragging) {
     return <div ref={setNodeRef} style={style} className="w-80"></div>;
@@ -59,11 +62,11 @@ export default function StackCard({ stackData }: IStackCardProps) {
         </div>
       </div>
 
-      <ScrollArea className="h-full">
+      <div className="h-full ">
         {stackData.tasks.map((taskData) => (
           <TaskCard key={taskData.id} taskData={taskData} />
         ))}
-      </ScrollArea>
+      </div>
     </div>
   );
 }

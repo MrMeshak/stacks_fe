@@ -29,8 +29,19 @@ export default function ProjectDndProvider({
     mutationFn: async (stackOrder: string[]) => {
       await httpClient.patch(`/projects/${projectId}`, { stackOrder });
     },
-    onMutate: (stackOrder: string[]) => {
+    onMutate: (stackOrder) => {
       const prevQueryData = queryClient.getQueryData(['projects', projectId]);
+
+      queryClient.setQueryData(
+        ['projects', projectId],
+        (queryData: AxiosResponse<Project>) => ({
+          ...queryData,
+          data: {
+            ...queryData.data,
+            stackOrder: stackOrder,
+          },
+        }),
+      );
       return { prevQueryData };
     },
     onError: (_error, _stackOrder, context) => {
@@ -46,35 +57,6 @@ export default function ProjectDndProvider({
     if (event.active.data.current?.type === 'Stack') {
       setActiveStackData(event.active.data.current.stackData);
     }
-  };
-
-  const onDragOver = (event: DragOverEvent) => {
-    const { active, over } = event;
-    if (!over) return;
-    if (active.id === over.id) return;
-
-    const queryData = queryClient.getQueryData<AxiosResponse<Project>>([
-      'projects',
-      projectId,
-    ]);
-    if (!queryData) return;
-    const { stackOrder } = queryData.data;
-
-    const activeIndex = stackOrder.findIndex(
-      (stackId) => stackId === active.id,
-    );
-    const overIndex = stackOrder.findIndex((stackId) => stackId === over.id);
-
-    queryClient.setQueryData(
-      ['projects', projectId],
-      (queryData: AxiosResponse<Project>) => ({
-        ...queryData,
-        data: {
-          ...queryData.data,
-          stackOrder: arrayMove(stackOrder, activeIndex, overIndex),
-        },
-      }),
-    );
   };
 
   const onDragEnd = (event: DragEndEvent) => {
@@ -98,14 +80,10 @@ export default function ProjectDndProvider({
   };
 
   return (
-    <DndContext
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
-      onDragOver={onDragOver}
-    >
+    <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
       {children}
       {createPortal(
-        <DragOverlay>
+        <DragOverlay dropAnimation={null}>
           {activeStackData && <StackCard stackData={activeStackData} />}
         </DragOverlay>,
         document.body,

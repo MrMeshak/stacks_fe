@@ -6,9 +6,12 @@ export interface ITaskCardProps {
 
 export default function TaskCard({ taskData }: ITaskCardProps) {
   return (
-    <div className="rounded-sm border-[1px] bg-white p-3">
+    <div className="mb-4 rounded-sm border-[1px] bg-white">
       <div>
-        <h3>{taskData.title}</h3>
+        <h3 className="p-3">{taskData.title}</h3>
+      </div>
+      <div className="p-3 text-sm font-light">
+        <p>{taskData.description}</p>
       </div>
     </div>
   );
