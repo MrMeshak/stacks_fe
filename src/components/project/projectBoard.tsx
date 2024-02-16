@@ -26,7 +26,6 @@ export default function ProjectBoard({ projectData }: IProjectBoardProps) {
             <StackCardWithData key={stackId} stackId={stackId} />
           ))}
         </SortableContext>
-        <StackCreateDialog />
       </div>
 
       <ScrollBar orientation="horizontal" />
