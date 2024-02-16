@@ -1,7 +1,6 @@
 import { Stack } from '@/axios';
 import { RiAddFill } from 'react-icons/ri';
 import { Button } from '../ui/button';
-import { ScrollArea, ScrollBar } from '../ui/scroll-area';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import TaskCard from '../task/taskCard';
