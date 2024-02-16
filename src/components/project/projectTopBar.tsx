@@ -3,6 +3,7 @@ import { useProjectPageIsSideBarOpen } from '@/store/projectPageStore/projectPag
 import { Button } from '../ui/button';
 import ProjectTopBarInfoWithData from './projectTopBarInfoWithData';
 import ProjectDropDownMenu from './projectDropdownMenu';
+import StackCreateDialog from '../stack/stackCreateDialog';
 
 export interface IProjectTopBarProps {
   projectId: string;
@@ -18,6 +19,7 @@ export default function ProjectTopBar({ projectId }: IProjectTopBarProps) {
       <ProjectTopBarInfoWithData projectId={projectId} />
       <div className="">
         <ProjectDropDownMenu projectId={projectId} />
+        <StackCreateDialog projectId={projectId} />
       </div>
     </div>
   );

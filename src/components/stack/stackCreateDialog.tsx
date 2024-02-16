@@ -8,25 +8,32 @@ import {
 import { Button } from '../ui/button';
 import { RiAddLine } from 'react-icons/ri';
 import StackCreateForm from './stackCreateForm';
+import { useState } from 'react';
 
-export interface IStackCreateDialogProps {}
+export interface IStackCreateDialogProps {
+  projectId: string;
+}
 
-export default function StackCreateDialog(props: IStackCreateDialogProps) {
+export default function StackCreateDialog({
+  projectId,
+}: IStackCreateDialogProps) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button
-          variant="secondary"
-          className="bg-100 h-20 w-80 border-2 border-dotted px-2 py-2 text-slate-300 shadow-none"
-        >
-          <RiAddLine className="h-8 w-8" /> Add a new stack
+        <Button variant="ghost" className="h-9 w-9 px-0 py-0">
+          <RiAddLine className="h-6 w-6" strokeWidth={0.5} />
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create Stack</DialogTitle>
         </DialogHeader>
-        <StackCreateForm />
+        <StackCreateForm
+          projectId={projectId}
+          onSuccess={() => setOpen(false)}
+        />
       </DialogContent>
     </Dialog>
   );
