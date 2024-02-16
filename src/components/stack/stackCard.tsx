@@ -4,6 +4,7 @@ import { Button } from '../ui/button';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import TaskCard from '../task/taskCard';
+import StackDropdownMenu from './stackDropDownMenu';
 
 export interface IStackCardProps {
   stackData: Stack;
@@ -54,6 +55,10 @@ export default function StackCard({ stackData }: IStackCardProps) {
             </div>
           </div>
           <div className=" flex items-center justify-center">
+            <StackDropdownMenu
+              stackId={stackData.id}
+              projectId={stackData.projectId}
+            />
             <Button variant="ghost" className="h-6 w-6 rounded-sm px-0 py-0">
               <RiAddFill className="h-5 w-5 text-primary" />
             </Button>
