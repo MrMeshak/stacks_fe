@@ -4,6 +4,8 @@ import { Button } from '../ui/button';
 import ProjectTopBarInfoWithData from './projectTopBarInfoWithData';
 import ProjectDropDownMenu from './projectDropdownMenu';
 import StackCreateDialog from '../stack/stackCreateDialog';
+import StackDeleteDialog from '../stack/stackDeleteDialog';
+import StackDropdownMenu from '../stack/stackDropDownMenu';
 
 export interface IProjectTopBarProps {
   projectId: string;

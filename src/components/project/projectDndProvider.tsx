@@ -3,6 +3,9 @@ import {
   DragEndEvent,
   DragOverlay,
   DragStartEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
 } from '@dnd-kit/core';
 import { ReactNode, useState } from 'react';
 import StackCard from '../stack/stackCard';
@@ -58,6 +61,14 @@ export default function ProjectDndProvider({
     }
   };
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 3,
+      },
+    }),
+  );
+
   const onDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
@@ -79,7 +90,11 @@ export default function ProjectDndProvider({
   };
 
   return (
-    <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
+    <DndContext
+      sensors={sensors}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+    >
       {children}
       {createPortal(
         <DragOverlay dropAnimation={null}>
