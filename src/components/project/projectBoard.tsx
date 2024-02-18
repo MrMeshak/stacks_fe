@@ -5,8 +5,6 @@ import {
 } from '@dnd-kit/sortable';
 import StackCardWithData from '../stack/stackCardWithData';
 import { ScrollArea, ScrollBar } from '../ui/scroll-area';
-import StackCreateDialog from '../stack/stackCreateDialog';
-import { useMemo } from 'react';
 
 export interface IProjectBoardProps {
   projectData: Project;

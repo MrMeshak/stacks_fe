@@ -3,8 +3,8 @@ import { RiAddFill } from 'react-icons/ri';
 import { Button } from '../ui/button';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import TaskCard from '../task/taskCard';
-import StackDropdownMenu from './stackDropDownMenu';
+import StackDropdownMenu from './stackDropdownMenu';
+import TaskCardWithData from '../task/taskCardWithData';
 
 export interface IStackCardProps {
   stackData: Stack;
@@ -51,7 +51,7 @@ export default function StackCard({ stackData }: IStackCardProps) {
             />
             <h4 className="font-semibold">{stackData.title}</h4>
             <div className="flex h-5 w-5 items-center justify-center rounded-sm bg-slate-100 text-xs">
-              {stackData.tasks.length}
+              {stackData.taskOrder.length}
             </div>
           </div>
           <div className=" flex items-center justify-center">
@@ -67,8 +67,12 @@ export default function StackCard({ stackData }: IStackCardProps) {
       </div>
 
       <div className="h-full ">
-        {stackData.tasks.map((taskData) => (
-          <TaskCard key={taskData.id} taskData={taskData} />
+        {stackData.taskOrder.map((taskId) => (
+          <TaskCardWithData
+            key={taskId}
+            taskId={taskId}
+            stackId={stackData.id}
+          />
         ))}
       </div>
     </div>
