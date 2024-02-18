@@ -8,6 +8,7 @@ import { Button } from '../ui/button';
 import { RiDeleteBin7Line, RiEdit2Line, RiMore2Fill } from 'react-icons/ri';
 import { useState } from 'react';
 import StackDeleteDialog from './stackDeleteDialog';
+import StackEditDialog from './stackEditDialog';
 
 export interface IStackDropdownMenuProps {
   stackId: string;
@@ -30,7 +31,10 @@ export default function StackDropdownMenu({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mx-1 my-2">
-          <DropdownMenuItem className="w-fit">
+          <DropdownMenuItem
+            onClick={() => setIsEditDialogOpen(true)}
+            className="w-fit"
+          >
             <RiEdit2Line className="h-4 w-4 text-slate-400" />
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -41,6 +45,12 @@ export default function StackDropdownMenu({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <StackEditDialog
+        stackId={stackId}
+        isDialogOpen={isEditDialogOpen}
+        setIsDialogOpen={setIsEditDialogOpen}
+      />
 
       <StackDeleteDialog
         stackId={stackId}
