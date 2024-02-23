@@ -90,6 +90,29 @@ export default function ProjectDndProvider({
     },
   });
 
+  const moveTaskOnTaskMutation = useMutation({
+    mutationFn: async ({
+      activeTaskId,
+      overTaskId,
+    }: {
+      activeTaskId: string;
+      overTaskId: string;
+    }) => {
+      await httpClient.post(
+        `/tasks/dnd/moveTaskOnTask?activeTaskId=${activeTaskId}&overTaskId=${overTaskId}`,
+      );
+    },
+    onError: () => {},
+  });
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 3,
+      },
+    }),
+  );
+
   const onDragStart = ({ active }: DragStartEvent) => {
     if (active.data.current?.type === 'Stack') {
       setOverlayStackData(active.data.current.stackData);
@@ -102,11 +125,10 @@ export default function ProjectDndProvider({
   const onDragOver = ({ active, over }: DragOverEvent) => {};
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {
+    setOverlayStackData(undefined);
+    setOverlayTaskData(undefined);
     if (!over) return;
     if (active.id === over.id) return;
-
-    console.log('active id', active.data.current?.type);
-    console.log('over id', over.data.current?.type);
 
     //Move Stack
     if (
@@ -125,7 +147,17 @@ export default function ProjectDndProvider({
       active.data.current?.type === 'Task' &&
       over.data.current?.type === 'Task'
     ) {
-      //taskMoveToTaskMutation.mutate({activeTaskId, overTaskId})
+      moveTaskOnTaskMutation.mutate({
+        activeTaskId: active.id.toString(),
+        overTaskId: over.id.toString(),
+      });
+      return;
+    }
+
+    if (
+      active.data.current?.type === 'Task' &&
+      over.data.current?.type === 'Stack'
+    ) {
       //taskMoveToStackMutation.mutate({activeTaskId}, overStackId)
       return;
     }
@@ -133,6 +165,7 @@ export default function ProjectDndProvider({
 
   return (
     <DndContext
+      sensors={sensors}
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
       onDragOver={onDragOver}
