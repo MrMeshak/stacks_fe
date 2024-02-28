@@ -151,6 +151,7 @@ export default function ProjectDndProvider({
 
     if (!over) return;
 
+    /* stackMove */
     if (
       active.data.current?.type === 'Stack' &&
       over.data.current?.type === 'Stack' &&
@@ -173,6 +174,11 @@ export default function ProjectDndProvider({
             overIndex,
           );
 
+          stackMoveMutation.mutate({
+            projectId: projectId,
+            stackOrder: updatedStackOrder,
+          });
+
           return {
             ...projectQueryRes,
             data: { ...projectQueryRes.data, stackOrder: updatedStackOrder },
@@ -180,15 +186,10 @@ export default function ProjectDndProvider({
         },
       );
 
-      const projectQueryRes = queryClient.getQueryData<
-        AxiosResponse<Project> | undefined
-      >(['projects', projectId]);
-      if (!projectQueryRes) return;
-      const stackOrder = projectQueryRes.data.stackOrder;
-      stackMoveMutation.mutate({ projectId, stackOrder });
       return;
     }
 
+    /* taskMove */
     if (active.data.current?.type === 'Task') {
       queryClient.setQueryData(
         ['tasks', active.id.toString()],
@@ -231,6 +232,7 @@ export default function ProjectDndProvider({
           };
         },
       );
+
       return;
     }
   };
