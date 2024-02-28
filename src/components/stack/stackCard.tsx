@@ -56,10 +56,12 @@ export default function StackCard({ stackData }: IStackCardProps) {
             />
             <h4 className="font-semibold">{stackData.title}</h4>
             <p>{stackData.id}</p>
+
             <div className="flex h-5 w-5 items-center justify-center rounded-sm bg-slate-100 text-xs">
               {stackData.taskOrder.length}
             </div>
           </div>
+
           <div className=" flex items-center justify-center">
             <StackDropdownMenu
               stackId={stackData.id}
@@ -88,6 +90,7 @@ export default function StackCard({ stackData }: IStackCardProps) {
           <ScrollBar orientation="vertical" />
         </SortableContext>
       </ScrollArea>
+      <div>{stackData.taskOrder}</div>
     </div>
   );
 }

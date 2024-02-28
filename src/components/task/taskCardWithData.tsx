@@ -14,23 +14,24 @@ export default function TaskCardWithData({
 }: ITaskCardWithDataProps) {
   const queryClient = useQueryClient();
   const taskQuery = useQuery({
-    queryKey: ['stacks', taskId],
+    queryKey: ['tasks', taskId],
     queryFn: async () => {
       return await httpClient.get<Task>(`/tasks/${taskId}`);
     },
-    initialData: () => {
-      const task = queryClient
-        .getQueryData<AxiosResponse<Stack>>(['stacks', stackId])
-        ?.data.tasks.find((task) => task.id === taskId);
+    //   initialData: () => {
+    //     const task = queryClient
+    //       .getQueryData<AxiosResponse<Stack>>(['stacks', stackId])
+    //       ?.data.tasks.find((task) => task.id === taskId);
 
-      return (
-        task && {
-          data: task,
-        }
-      );
-    },
-    initialDataUpdatedAt: () =>
-      queryClient.getQueryState(['stacks', stackId])?.dataUpdatedAt,
+    //     return (
+    //       task && {
+    //         data: task,
+    //       }
+    //     );
+    //   },
+    //   initialDataUpdatedAt: () =>
+    //     queryClient.getQueryState(['stacks', stackId])?.dataUpdatedAt,
+    // });
   });
 
   if (taskQuery.isLoading) {
@@ -40,7 +41,6 @@ export default function TaskCardWithData({
   if (taskQuery.isError) {
     return;
   }
-
   const taskData = taskQuery.data?.data;
   return taskData && <TaskCard taskData={taskData} />;
 }
