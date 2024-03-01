@@ -6,7 +6,6 @@ import {
   DragOverlay,
   DragStartEvent,
   PointerSensor,
-  closestCorners,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
@@ -80,9 +79,6 @@ export default function ProjectDndProvider({
 
   const onDragOver = ({ active, over }: DragOverEvent) => {
     if (!over) return;
-    console.log('dragOverActiveId', active.id);
-    console.log('dragOverOverId', over.id);
-
     if (active.id === over.id) return;
 
     if (
@@ -110,7 +106,6 @@ export default function ProjectDndProvider({
         queryClient.setQueryData(
           ['stacks', over.data.current.taskData.stackId],
           (stackQueryRes: AxiosResponse<Stack> | undefined) => {
-            console.log(stackQueryRes);
             if (!stackQueryRes) return;
             const updatedTaskOrder = [...stackQueryRes.data.taskOrder];
             updatedTaskOrder.push(active.id.toString());
@@ -165,9 +160,6 @@ export default function ProjectDndProvider({
   };
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {
-    console.log('dragEndActiveId :', active.id);
-    console.log('dragEndOverId :', over?.id);
-
     setOverlayStackData(undefined);
     setOverlayTaskData(undefined);
 
