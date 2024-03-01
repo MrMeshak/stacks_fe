@@ -52,11 +52,17 @@ export default function ProjectDndProvider({
     mutationFn: async (data: taskMoveDto) => {
       await httpClient.post('/dnd/taskMove', data);
     },
+    onError: () => {
+      queryClient.invalidateQueries({ queryKey: ['stacks'] });
+    },
   });
 
   const stackMoveMutation = useMutation({
     mutationFn: async (data: stackMoveDto) => {
       await httpClient.post('/dnd/stackMove', data);
+    },
+    onError: () => {
+      queryClient.invalidateQueries({ queryKey: ['projects', projectId] });
     },
   });
 
