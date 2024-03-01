@@ -3,7 +3,7 @@ import ProjectTopBar from '@/components/project/projectTopBar';
 import ProjectBoardWithData from '@/components/project/projectBoardWithData';
 import ProjectSideBar from '@/components/project/projectSideBar';
 import { useProjectPageIsSideBarOpen } from '@/store/projectPageStore/projectPageStore';
-import ProjectDndProvider from '@/components/project/projectDndProvider3';
+import ProjectDndProvider from '@/components/project/projectDndProvider';
 
 export interface IProjectPageProps {}
 

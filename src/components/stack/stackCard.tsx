@@ -49,15 +49,13 @@ export default function StackCard({ stackData }: IStackCardProps) {
     >
       <div {...attributes} {...listeners} className="mb-4 w-full">
         <div className=" flex w-full justify-between rounded-sm border-[1px] border-slate-200 bg-white px-2 py-2">
-          <div className="flex items-center gap-3">
+          <div className="flex min-w-0 items-center gap-3">
             <div
               style={{ backgroundColor: stackData.color }}
-              className="h-3 w-3 rounded-sm text-xs"
+              className="h-3 w-3 min-w-3 rounded-sm text-xs"
             />
-            <h4 className="font-semibold">{stackData.title}</h4>
-            <p>{stackData.id}</p>
-
-            <div className="flex h-5 w-5 items-center justify-center rounded-sm bg-slate-100 text-xs">
+            <h4 className="truncate font-semibold">{stackData.title}</h4>
+            <div className="flex h-5 w-5 min-w-5 items-center justify-center rounded-sm bg-slate-100 text-xs">
               {stackData.taskOrder.length}
             </div>
           </div>
@@ -74,7 +72,7 @@ export default function StackCard({ stackData }: IStackCardProps) {
         </div>
       </div>
 
-      <ScrollArea className=" h-[calc(100vh-9rem)] border-2 border-rose-100">
+      <ScrollArea className=" h-[calc(100vh-9rem)]">
         <SortableContext
           items={stackData.taskOrder}
           strategy={verticalListSortingStrategy}
@@ -90,7 +88,6 @@ export default function StackCard({ stackData }: IStackCardProps) {
           <ScrollBar orientation="vertical" />
         </SortableContext>
       </ScrollArea>
-      <div>{stackData.taskOrder}</div>
     </div>
   );
 }

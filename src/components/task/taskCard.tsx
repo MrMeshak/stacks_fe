@@ -30,13 +30,10 @@ export default function TaskCard({ taskData }: ITaskCardProps) {
       <div
         ref={setNodeRef}
         style={style}
-        className="mb-4 rounded-sm border-[1px] opacity-100"
+        className="mb-4 rounded-sm border-[1px] opacity-0"
       >
         <div>
           <h3 className="p-3">{taskData.title}</h3>
-          <p className="text-xs">{taskData.id}</p>
-          <br />
-          <p className="text-xs"> {taskData.stackId}</p>
         </div>
         <div className="p-3 text-sm font-light">
           <p>{taskData.description}</p>
@@ -55,9 +52,6 @@ export default function TaskCard({ taskData }: ITaskCardProps) {
     >
       <div>
         <h3 className="p-3">{taskData.title}</h3>
-        <p className="text-xs">{taskData.id}</p>
-        <br />
-        <p className="text-xs"> {taskData.stackId}</p>
       </div>
       <div className="p-3 text-sm font-light">
         <p>{taskData.description}</p>

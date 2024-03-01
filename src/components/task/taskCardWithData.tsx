@@ -18,20 +18,6 @@ export default function TaskCardWithData({
     queryFn: async () => {
       return await httpClient.get<Task>(`/tasks/${taskId}`);
     },
-    //   initialData: () => {
-    //     const task = queryClient
-    //       .getQueryData<AxiosResponse<Stack>>(['stacks', stackId])
-    //       ?.data.tasks.find((task) => task.id === taskId);
-
-    //     return (
-    //       task && {
-    //         data: task,
-    //       }
-    //     );
-    //   },
-    //   initialDataUpdatedAt: () =>
-    //     queryClient.getQueryState(['stacks', stackId])?.dataUpdatedAt,
-    // });
   });
 
   if (taskQuery.isLoading) {
