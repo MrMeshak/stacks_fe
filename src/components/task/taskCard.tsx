@@ -1,6 +1,7 @@
 import { Task } from '@/axios';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import TaskControlBar from './taskControlBar';
 
 export interface ITaskCardProps {
   taskData: Task;
@@ -38,24 +39,28 @@ export default function TaskCard({ taskData }: ITaskCardProps) {
         <div className="p-3 text-sm font-light">
           <p>{taskData.description}</p>
         </div>
+        <TaskControlBar taskData={taskData} />
       </div>
     );
   }
 
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className="mb-4 rounded-sm border-[1px] bg-white"
-    >
-      <div>
-        <h3 className="p-3">{taskData.title}</h3>
+    <>
+      <div
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...listeners}
+        className={`mb-4 rounded-sm border-[1px] bg-white ${taskData.completed ? 'border-green-700' : ''} `}
+      >
+        <div>
+          <h3 className="p-3">{taskData.title}</h3>
+        </div>
+        <div className="p-3 text-sm font-light">
+          <p>{taskData.description}</p>
+        </div>
+        <TaskControlBar taskData={taskData} />
       </div>
-      <div className="p-3 text-sm font-light">
-        <p>{taskData.description}</p>
-      </div>
-    </div>
+    </>
   );
 }
