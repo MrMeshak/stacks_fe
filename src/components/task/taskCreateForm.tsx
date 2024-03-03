@@ -1,5 +1,4 @@
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
+import z from 'zod';
 import {
   Form,
   FormControl,
@@ -8,40 +7,41 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
-import { Input } from '../ui/input';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import { Alert, AlertDescription } from '../ui/alert';
-import FormColorPicker from '../utils/form/FormColorPicker';
-import { colorPickerColors } from '../utils/form/FormColorPicker';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { httpClient } from '@/axios';
+import { Stack, httpClient } from '@/axios';
 import { AxiosError } from 'axios';
 
-const createStackFormSchema = z.object({
+const createTaskFormSchema = z.object({
   title: z.string().min(1, 'required'),
-  color: z.string().regex(/^#[0-9A-Fa-f]{6}$/, 'invalid hex color'),
+  description: z.string().min(1, 'required'),
 });
 
-type CreateStackFormSchema = z.infer<typeof createStackFormSchema>;
+type CreateTaskFormSchema = z.infer<typeof createTaskFormSchema>;
 
-export interface ICreateStackFromProps {
-  projectId: string;
+export interface ITaskCreateFormProps {
+  stackData: Stack;
   onSuccess: () => void;
 }
 
-export default function CreateStackFrom({
-  projectId,
+export default function TaskCreateForm({
+  stackData,
   onSuccess,
-}: ICreateStackFromProps) {
+}: ITaskCreateFormProps) {
   const queryClient = useQueryClient();
-  const createStackMutation = useMutation({
-    mutationFn: async (data: CreateStackFormSchema) => {
-      return await httpClient.post(`stacks/${projectId}`, data);
+
+  const createTaskMutation = useMutation({
+    mutationFn: async (data: CreateTaskFormSchema) => {
+      await httpClient.post(`/tasks/${stackData.id}`, data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['projects', projectId],
+        queryKey: ['stacks', stackData.id],
         exact: true,
       });
       onSuccess();
@@ -55,21 +55,20 @@ export default function CreateStackFrom({
     },
   });
 
-  const form = useForm({
-    resolver: zodResolver(createStackFormSchema),
+  const form = useForm<CreateTaskFormSchema>({
+    resolver: zodResolver(createTaskFormSchema),
     defaultValues: {
       title: '',
-      color: colorPickerColors[0],
+      description: '',
     },
   });
-
   const {
     formState: { errors },
     setError,
   } = form;
 
-  const onSubmit = (values: CreateStackFormSchema) => {
-    createStackMutation.mutate(values);
+  const onSubmit = (values: CreateTaskFormSchema) => {
+    createTaskMutation.mutate(values);
   };
 
   return (
@@ -91,17 +90,31 @@ export default function CreateStackFrom({
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
-          name="color"
+          name="description"
           render={({ field }) => (
-            <FormColorPicker
-              onChange={field.onChange}
-              defaultValue={field.value}
-            />
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <Textarea className=" h-28 resize-none" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
           )}
         />
+
+        <div className="mt-2 flex items-center gap-2 text-muted-foreground">
+          <p className=" ">In </p>
+          <div className="flex items-center gap-2 rounded-md bg-slate-100 px-2 py-1">
+            <div
+              style={{ backgroundColor: stackData.color }}
+              className="h-3 w-3 min-w-3 rounded-sm text-xs"
+            />
+            <p className=" text-sm font-semibold">{stackData.title}</p>
+          </div>
+        </div>
+
         <div className="mt-4 flex flex-col gap-2">
           <Button className="w-fit">Create</Button>
           {errors.root && (
