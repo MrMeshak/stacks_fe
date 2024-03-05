@@ -70,6 +70,7 @@ export default function TaskCard({ taskData }: ITaskCardProps) {
       </div>
       <TaskDialog
         taskId={taskData.id}
+        stackId={taskData.stackId}
         isDialogOpen={isDialogOpen}
         setIsDialogOpen={setIsDialogOpen}
       />

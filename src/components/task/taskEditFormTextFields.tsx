@@ -43,6 +43,7 @@ export default function TaskEditFormTextFields({
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['tasks', taskData.id],
+        exact: true,
       });
       setIsDisabled(true);
     },
