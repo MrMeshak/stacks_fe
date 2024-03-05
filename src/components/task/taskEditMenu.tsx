@@ -6,10 +6,36 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '../ui/button';
 import { RiMoreFill, RiDeleteBin7Line } from 'react-icons/ri';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { httpClient } from '@/axios';
 
-export interface ITaskEditMenuProps {}
+export interface ITaskEditMenuProps {
+  stackId: string;
+  taskId: string;
+}
 
-export default function TaskEditMenu(props: ITaskEditMenuProps) {
+export default function TaskEditMenu({ taskId, stackId }: ITaskEditMenuProps) {
+  const queryClient = useQueryClient();
+  const deleteTaskMutation = useMutation({
+    mutationFn: async () => {
+      await httpClient.delete(`/tasks/${taskId}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['tasks', taskId],
+        exact: true,
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['stacks', stackId],
+        exact: true,
+      });
+    },
+  });
+
+  const handleDelete = () => {
+    deleteTaskMutation.mutate();
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -18,7 +44,7 @@ export default function TaskEditMenu(props: ITaskEditMenuProps) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="right" className="flex">
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleDelete}>
           <RiDeleteBin7Line className="text-slate-400" />
         </DropdownMenuItem>
       </DropdownMenuContent>
