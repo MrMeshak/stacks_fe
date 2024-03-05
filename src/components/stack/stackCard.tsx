@@ -10,6 +10,7 @@ import { CSS } from '@dnd-kit/utilities';
 import StackDropdownMenu from './stackDropdownMenu';
 import TaskCardWithData from '../task/taskCardWithData';
 import { ScrollArea, ScrollBar } from '../ui/scroll-area';
+import TaskCreateDialog from '../task/taskCreateDialog';
 
 export interface IStackCardProps {
   stackData: Stack;
@@ -65,9 +66,7 @@ export default function StackCard({ stackData }: IStackCardProps) {
               stackId={stackData.id}
               projectId={stackData.projectId}
             />
-            <Button variant="ghost" className="h-6 w-6 rounded-sm px-0 py-0">
-              <RiAddFill className="h-5 w-5 text-primary" />
-            </Button>
+            <TaskCreateDialog stackId={stackData.id} />
           </div>
         </div>
       </div>

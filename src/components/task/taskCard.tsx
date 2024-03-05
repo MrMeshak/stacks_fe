@@ -1,12 +1,19 @@
 import { Task } from '@/axios';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import TaskControlBar from './taskControlBar';
+import TaskDialog from './taskDialog';
+import { useState } from 'react';
+import { RiMore2Fill } from 'react-icons/ri';
+import { Button } from '../ui/button';
 
 export interface ITaskCardProps {
   taskData: Task;
 }
 
 export default function TaskCard({ taskData }: ITaskCardProps) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   const {
     setNodeRef,
     attributes,
@@ -38,24 +45,34 @@ export default function TaskCard({ taskData }: ITaskCardProps) {
         <div className="p-3 text-sm font-light">
           <p>{taskData.description}</p>
         </div>
+        <TaskControlBar taskData={taskData} />
       </div>
     );
   }
 
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className="mb-4 rounded-sm border-[1px] bg-white"
-    >
-      <div>
-        <h3 className="p-3">{taskData.title}</h3>
+    <>
+      <div
+        onClick={() => setIsDialogOpen(true)}
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...listeners}
+        className={`mb-4 rounded-sm border-[1px] bg-white ${taskData.completed ? 'border-green-700' : ''} `}
+      >
+        <div className="p-3">
+          <h3>{taskData.title}</h3>
+        </div>
+        <div className="p-3 text-sm font-light">
+          <p>{taskData.description}</p>
+        </div>
+        <TaskControlBar taskData={taskData} />
       </div>
-      <div className="p-3 text-sm font-light">
-        <p>{taskData.description}</p>
-      </div>
-    </div>
+      <TaskDialog
+        taskId={taskData.id}
+        isDialogOpen={isDialogOpen}
+        setIsDialogOpen={setIsDialogOpen}
+      />
+    </>
   );
 }

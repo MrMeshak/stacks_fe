@@ -74,7 +74,7 @@ export default function ProjectCreateForm({
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Project title</FormLabel>
+              <FormLabel>Title</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>

@@ -83,7 +83,7 @@ export default function CreateStackFrom({
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Stack title</FormLabel>
+              <FormLabel>Title</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
