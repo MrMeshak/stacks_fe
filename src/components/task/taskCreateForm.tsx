@@ -19,7 +19,7 @@ import { AxiosError } from 'axios';
 
 const createTaskFormSchema = z.object({
   title: z.string().min(1, 'required'),
-  description: z.string().min(1, 'required'),
+  description: z.string(),
 });
 
 type CreateTaskFormSchema = z.infer<typeof createTaskFormSchema>;
