@@ -2,6 +2,7 @@ import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog';
 import { Dispatch, SetStateAction } from 'react';
 import TaskEditFormTextFieldsWithData from './taskEditFormTextFieldsWithData';
 import TaskEditControlBarWithData from './taskEditControlBarWithData';
+import TaskEditMenu from './taskEditMenu';
 
 export interface ITaskDialogProps {
   taskId: string;
@@ -17,7 +18,9 @@ export default function TaskDialog({
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogContent className="px-0">
-        <DialogHeader></DialogHeader>
+        <DialogHeader className="px-7">
+          <TaskEditMenu />
+        </DialogHeader>
         <TaskEditFormTextFieldsWithData taskId={taskId} />
         <TaskEditControlBarWithData taskId={taskId} />
       </DialogContent>
