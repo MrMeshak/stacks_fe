@@ -4,27 +4,14 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from '../ui/form';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Task, httpClient } from '@/axios';
-import { Input } from '../ui/input';
 import { AutosizeTextarea } from '../ui/auto-size-text-area';
-import { Checkbox } from '../ui/checkbox';
-import {
-  RiCheckLine,
-  RiDeleteBack2Line,
-  RiDeleteBinFill,
-  RiEdit2Line,
-  RiMore2Line,
-} from 'react-icons/ri';
-import {
-  QueryClient,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { RiEdit2Line } from 'react-icons/ri';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 import { Alert, AlertDescription } from '../ui/alert';
@@ -162,8 +149,6 @@ export default function TaskEditFormTextFields({
                 )}
               </div>
             )}
-
-            {/* <FormField/> */}
           </form>
         </Form>
       </div>

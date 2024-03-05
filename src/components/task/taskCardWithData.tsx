@@ -1,7 +1,6 @@
-import { Stack, Task, httpClient } from '@/axios';
+import { Task, httpClient } from '@/axios';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import TaskCard from './taskCard';
-import { AxiosResponse } from 'axios';
 
 export interface ITaskCardWithDataProps {
   stackId: string;
