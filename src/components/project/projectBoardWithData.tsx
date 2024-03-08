@@ -1,9 +1,8 @@
-import { Project, fetchProjectById } from '@/axios';
+import { fetchProjectById } from '@/axios';
 import { useQuery } from '@tanstack/react-query';
 import ProjectBoard from './projectBoard';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 import ProjectBoardNotFound from './projectBoardNotFound';
-import { useNavigate } from 'react-router-dom';
 
 export interface IProjectBoardProps {
   projectId: string;
@@ -12,7 +11,6 @@ export interface IProjectBoardProps {
 export default function ProjectBoardWithData({
   projectId,
 }: IProjectBoardProps) {
-  const navigate = useNavigate();
   const projectQuery = useQuery({
     queryKey: ['projects', projectId],
     queryFn: () => fetchProjectById(projectId),
@@ -24,14 +22,10 @@ export default function ProjectBoardWithData({
 
   if (projectQuery.isError) {
     if (projectQuery.error instanceof AxiosError) {
-      if (projectQuery.error.response?.status === 403) {
-        navigate('/login');
-      }
       if (projectQuery.error.response?.status === 404) {
         return <ProjectBoardNotFound />;
       }
     }
-
     return;
   }
 

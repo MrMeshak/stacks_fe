@@ -12,6 +12,10 @@ export default function ProjectPage(props: IProjectPageProps) {
   const isSideBarOpen = useProjectPageIsSideBarOpen();
 
   if (!projectId) {
+    //find projects from user and redirect to first project, if error 403 redirect to login
+
+    //If no projects create a demo project and redirect to that project
+
     return;
   }
 
