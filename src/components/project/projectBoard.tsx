@@ -13,6 +13,10 @@ export interface IProjectBoardProps {
 export default function ProjectBoard({ projectData }: IProjectBoardProps) {
   const { stackOrder } = projectData;
 
+  if (!stackOrder) {
+    return <div className="h-[calc(100vh-3.5rem)] bg-slate-50"> </div>;
+  }
+
   return (
     <ScrollArea className="h-[calc(100vh-3.5rem)] w-full bg-slate-50">
       <div className=" flex h-[calc(100vh-3.5rem)] items-start space-x-4 p-4 ">

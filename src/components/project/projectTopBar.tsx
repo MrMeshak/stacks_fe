@@ -12,13 +12,13 @@ export default function ProjectTopBar({ projectId }: IProjectTopBarProps) {
 
   return (
     <div
-      className={`flex h-14 items-center justify-between border-b-[1px] bg-white pr-3 ${isSideBarOpen ? 'pl-6' : 'pl-14'}`}
+      className={`flex h-14 flex-row-reverse items-center justify-between border-b-[1px] bg-white pr-3 ${isSideBarOpen ? 'pl-6' : 'pl-14'}`}
     >
-      <ProjectTopBarInfoWithData projectId={projectId} />
       <div className="flex">
         <ProjectDropDownMenu projectId={projectId} />
         <StackCreateDialog projectId={projectId} />
       </div>
+      <ProjectTopBarInfoWithData projectId={projectId} />
     </div>
   );
 }

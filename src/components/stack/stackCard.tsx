@@ -57,7 +57,7 @@ export default function StackCard({ stackData }: IStackCardProps) {
             />
             <h4 className="truncate font-semibold">{stackData.title}</h4>
             <div className="flex h-5 w-5 min-w-5 items-center justify-center rounded-sm bg-slate-100 text-xs">
-              {stackData.taskOrder.length}
+              {stackData.taskOrder?.length || 0}
             </div>
           </div>
 
@@ -71,22 +71,24 @@ export default function StackCard({ stackData }: IStackCardProps) {
         </div>
       </div>
 
-      <ScrollArea className=" h-[calc(100vh-9rem)]">
-        <SortableContext
-          items={stackData.taskOrder}
-          strategy={verticalListSortingStrategy}
-        >
-          {stackData.taskOrder.map((taskId) => (
-            <TaskCardWithData
-              key={taskId}
-              taskId={taskId}
-              stackId={stackData.id}
-            />
-          ))}
+      {stackData.taskOrder && (
+        <ScrollArea className=" h-[calc(100vh-9rem)]">
+          <SortableContext
+            items={stackData.taskOrder}
+            strategy={verticalListSortingStrategy}
+          >
+            {stackData.taskOrder.map((taskId) => (
+              <TaskCardWithData
+                key={taskId}
+                taskId={taskId}
+                stackId={stackData.id}
+              />
+            ))}
 
-          <ScrollBar orientation="vertical" />
-        </SortableContext>
-      </ScrollArea>
+            <ScrollBar orientation="vertical" />
+          </SortableContext>
+        </ScrollArea>
+      )}
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function ProjectSideBar({ projectId }: IProjectSideBarProps) {
   };
 
   return (
-    <div className="relative w-full border-r-[1px]  bg-white">
+    <div className="relative h-[100vh] w-full  border-r-[1px] bg-white">
       <div className="w-full overflow-hidden">
         <div className="flex h-14 items-center justify-center gap-2 border-b-[1px]">
           <RiAppsFill className="h-10 w-10 text-slate-900" />
