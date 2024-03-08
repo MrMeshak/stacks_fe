@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchProjects } from '@/axios';
 import ProjectTopBarSelect from './projectTopBarSelect';
+import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface IProjectTopBarSelectWithDataProps {
   projectId: string;
@@ -9,6 +11,7 @@ export interface IProjectTopBarSelectWithDataProps {
 export default function ProjectTopBarSelectWithData({
   projectId,
 }: IProjectTopBarSelectWithDataProps) {
+  const navigate = useNavigate();
   const projectsQuery = useQuery({
     queryKey: ['projects'],
     queryFn: () => fetchProjects(),
@@ -19,7 +22,11 @@ export default function ProjectTopBarSelectWithData({
   }
 
   if (projectsQuery.isError) {
-    console.log(projectsQuery.error.message);
+    if (projectsQuery.error instanceof AxiosError) {
+      if (projectsQuery.error.response?.status === 403) {
+        navigate('/login');
+      }
+    }
     return;
   }
 
