@@ -16,13 +16,14 @@ const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error) => {
       if (error instanceof AxiosError) {
-        history.replace('/login');
+        if (error.response?.status === 403) history.replace('/login');
       }
     },
   }),
   defaultOptions: {
     queries: {
       staleTime: Infinity,
+      retry: 2,
     },
   },
 });

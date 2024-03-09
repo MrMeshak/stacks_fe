@@ -8,8 +8,8 @@ export const httpClient = axios.create({
 
 export interface User {
   id: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
 }
 
 export interface Project {

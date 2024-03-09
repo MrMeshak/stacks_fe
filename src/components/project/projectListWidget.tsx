@@ -1,25 +1,19 @@
 import { Project } from '@/axios';
-
 import { Link } from 'react-router-dom';
-import ProjectCreateDialog from './projectCreateDialog';
 
-export interface IProjectWidgetProps {
+export interface IProjectListWidgetProps {
   projectId: string;
-  projects: Project[];
+  projectsData: Project[];
 }
 
-export default function ProjectWidget({
+export default function ProjectListWidget({
   projectId,
-  projects,
-}: IProjectWidgetProps) {
+  projectsData,
+}: IProjectListWidgetProps) {
   return (
-    <div className="w-full p-4">
-      <div className="flex items-center justify-between pb-4">
-        <h3 className="font-semibold text-primary">Projects</h3>
-        <ProjectCreateDialog />
-      </div>
+    <div className="w-full px-4 py-2">
       <ul>
-        {projects.map((project) => (
+        {projectsData.map((project) => (
           <li
             key={project.id}
             className={`rounded-sm  px-3 py-2 pb-2 font-light ${project.id === projectId ? ' bg-slate-100  text-slate-400' : 'text-slate-300'}`}

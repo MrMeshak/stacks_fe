@@ -34,7 +34,7 @@ export default function LoginForm(props: ILoginFormProps) {
       return await httpClient.post('/auth/login', data);
     },
     onSuccess: () => {
-      navigate('/');
+      navigate('/projects');
     },
     onError: (error) => {
       console.log(error);

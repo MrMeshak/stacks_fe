@@ -4,7 +4,7 @@ import ProjectDropDownMenu from './projectDropdownMenu';
 import StackCreateDialog from '../stack/stackCreateDialog';
 
 export interface IProjectTopBarProps {
-  projectId: string;
+  projectId: string | undefined;
 }
 
 export default function ProjectTopBar({ projectId }: IProjectTopBarProps) {
@@ -15,10 +15,10 @@ export default function ProjectTopBar({ projectId }: IProjectTopBarProps) {
       className={`flex h-14 flex-row-reverse items-center justify-between border-b-[1px] bg-white pr-3 ${isSideBarOpen ? 'pl-6' : 'pl-14'}`}
     >
       <div className="flex">
-        <ProjectDropDownMenu projectId={projectId} />
-        <StackCreateDialog projectId={projectId} />
+        {projectId && <ProjectDropDownMenu projectId={projectId} />}
+        {projectId && <StackCreateDialog projectId={projectId} />}
       </div>
-      <ProjectTopBarInfoWithData projectId={projectId} />
+      {projectId && <ProjectTopBarInfoWithData projectId={projectId} />}
     </div>
   );
 }

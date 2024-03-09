@@ -4,20 +4,13 @@ import ProjectBoardWithData from '@/components/project/projectBoardWithData';
 import ProjectSideBar from '@/components/project/projectSideBar';
 import { useProjectPageIsSideBarOpen } from '@/store/projectPageStore/projectPageStore';
 import ProjectDndProvider from '@/components/project/projectDndProvider';
+import Project from '@/components/project/project';
 
 export interface IProjectPageProps {}
 
 export default function ProjectPage(props: IProjectPageProps) {
   const { projectId } = useParams();
   const isSideBarOpen = useProjectPageIsSideBarOpen();
-
-  if (!projectId) {
-    //find projects from user and redirect to first project, if error 403 redirect to login
-
-    //If no projects create a demo project and redirect to that project
-
-    return;
-  }
 
   return (
     <div className="">
@@ -27,9 +20,7 @@ export default function ProjectPage(props: IProjectPageProps) {
         <ProjectSideBar projectId={projectId} />
         <div>
           <ProjectTopBar projectId={projectId} />
-          <ProjectDndProvider projectId={projectId}>
-            <ProjectBoardWithData projectId={projectId} />
-          </ProjectDndProvider>
+          <Project projectId={projectId} />
         </div>
       </div>
     </div>

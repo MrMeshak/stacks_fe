@@ -20,6 +20,7 @@ import {
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { history } from '@/context/history';
 
 export interface IProjectDeleteFormProps {
   projectData: Project;
@@ -47,7 +48,12 @@ export default function ProjectDeleteForm({
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
+        queryKey: ['projects'],
+        exact: true,
+      });
+      queryClient.invalidateQueries({
         queryKey: ['projects', projectData.id],
+        exact: true,
       });
       navigate('/projects');
     },

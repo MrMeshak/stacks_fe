@@ -1,14 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
 import { fetchProjects } from '@/axios';
-import ProjectTopBarSelect from './projectTopBarSelect';
+import { useQuery } from '@tanstack/react-query';
+import ProjectWidget from './projectListWidget';
 
-export interface IProjectTopBarSelectWithDataProps {
+export interface IProjectListWidgetWithDataProps {
   projectId: string;
 }
 
-export default function ProjectTopBarSelectWithData({
+export default function ProjectListWidgetWithData({
   projectId,
-}: IProjectTopBarSelectWithDataProps) {
+}: IProjectListWidgetWithDataProps) {
   const projectsQuery = useQuery({
     queryKey: ['projects'],
     queryFn: () => fetchProjects(),
@@ -26,7 +26,7 @@ export default function ProjectTopBarSelectWithData({
 
   return (
     projectsData && (
-      <ProjectTopBarSelect projectId={projectId} projects={projectsData} />
+      <ProjectWidget projectId={projectId} projectsData={projectsData} />
     )
   );
 }
