@@ -57,7 +57,7 @@ export default function StackCard({ stackData }: IStackCardProps) {
             />
             <h4 className="truncate font-semibold">{stackData.title}</h4>
             <div className="flex h-5 w-5 min-w-5 items-center justify-center rounded-sm bg-slate-100 text-xs">
-              {stackData.taskOrder?.length || 0}
+              {stackData.taskOrder.length}
             </div>
           </div>
 

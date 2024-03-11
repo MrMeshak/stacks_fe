@@ -4,7 +4,7 @@ export interface ISignupPageProps {}
 
 export default function SignupPage(props: ISignupPageProps) {
   return (
-    <div className="flex h-screen w-full items-center justify-center">
+    <div className="flex h-screen w-full items-center justify-center bg-slate-50">
       <SignupCard />
     </div>
   );
