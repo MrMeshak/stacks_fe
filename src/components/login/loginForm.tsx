@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
+import { Alert, AlertDescription } from '../ui/alert';
 import { httpClient } from '@/axios';
 
 const loginFormSchema = z.object({
@@ -26,7 +26,7 @@ type LoginFormSchema = z.infer<typeof loginFormSchema>;
 
 export interface ILoginFormProps {}
 
-export default function LoginForm(props: ILoginFormProps) {
+export default function LoginForm() {
   const navigate = useNavigate();
 
   const loginMutation = useMutation({

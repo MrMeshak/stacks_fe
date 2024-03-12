@@ -1,6 +1,4 @@
 import { Stack } from '@/axios';
-import { RiAddFill } from 'react-icons/ri';
-import { Button } from '../ui/button';
 import {
   SortableContext,
   useSortable,

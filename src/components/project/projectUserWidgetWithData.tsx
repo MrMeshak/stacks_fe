@@ -4,9 +4,7 @@ import ProjectUserWidget from './projectUserWidget';
 
 export interface IProjectUserWidgetWithDataProps {}
 
-export default function ProjectUserWidgetWithData(
-  props: IProjectUserWidgetWithDataProps,
-) {
+export default function ProjectUserWidgetWithData() {
   const meQuery = useQuery({
     queryKey: ['users', 'me'],
     queryFn: async () => {

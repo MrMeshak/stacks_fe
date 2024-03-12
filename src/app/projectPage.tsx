@@ -1,14 +1,12 @@
 import { useParams } from 'react-router-dom';
 import ProjectTopBar from '@/components/project/projectTopBar';
-import ProjectBoardWithData from '@/components/project/projectBoardWithData';
 import ProjectSideBar from '@/components/project/projectSideBar';
 import { useProjectPageIsSideBarOpen } from '@/store/projectPageStore/projectPageStore';
-import ProjectDndProvider from '@/components/project/projectDndProvider';
 import Project from '@/components/project/project';
 
 export interface IProjectPageProps {}
 
-export default function ProjectPage(props: IProjectPageProps) {
+export default function ProjectPage() {
   const { projectId } = useParams();
   const isSideBarOpen = useProjectPageIsSideBarOpen();
 

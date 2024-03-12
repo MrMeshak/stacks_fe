@@ -11,7 +11,7 @@ import LoginForm from './loginForm';
 
 export interface ILoginCardProps {}
 
-export default function LoginCard(props: ILoginCardProps) {
+export default function LoginCard() {
   return (
     <Card className="flex h-fit w-full max-w-96 flex-col justify-between">
       <CardHeader>

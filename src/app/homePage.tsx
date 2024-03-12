@@ -1,6 +1,6 @@
 export interface IHomePageProps {}
 
-export default function HomePage(props: IHomePageProps) {
+export default function HomePage() {
   return (
     <div>
       <h3>Home Page</h3>

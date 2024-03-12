@@ -15,7 +15,6 @@ import { Alert, AlertDescription } from '../ui/alert';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Project, httpClient } from '@/axios';
 import { AxiosError } from 'axios';
-import { redirect, useNavigate } from 'react-router-dom';
 
 const editProjectFormSchema = z.object({
   title: z.string().min(1, 'required'),
@@ -32,7 +31,6 @@ export default function ProjectEditForm({
   projectData,
   onSuccess,
 }: IProjectEditFormProps) {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const updateProjectQuery = useMutation({

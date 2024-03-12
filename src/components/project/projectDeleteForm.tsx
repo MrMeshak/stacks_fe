@@ -13,14 +13,9 @@ import {
 import { Input } from '../ui/input';
 import { Alert, AlertDescription } from '../ui/alert';
 import { Button } from '../ui/button';
-import {
-  QueryClient,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { history } from '@/context/history';
 
 export interface IProjectDeleteFormProps {
   projectData: Project;
@@ -43,7 +38,7 @@ export default function ProjectDeleteForm({
   type DeleteProjectFormSchema = z.infer<typeof deleteProjectFormSchema>;
 
   const deleteProjectMutation = useMutation({
-    mutationFn: async (data: DeleteProjectFormSchema) => {
+    mutationFn: async () => {
       return await httpClient.delete(`/projects/${projectData.id}`);
     },
     onSuccess: () => {
@@ -78,8 +73,8 @@ export default function ProjectDeleteForm({
     setError,
   } = form;
 
-  const onSubmit = (values: DeleteProjectFormSchema) => {
-    deleteProjectMutation.mutate(values);
+  const onSubmit = () => {
+    deleteProjectMutation.mutate();
   };
 
   return (

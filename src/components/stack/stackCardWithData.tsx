@@ -1,4 +1,4 @@
-import { fetchStackById, httpClient } from '@/axios';
+import { fetchStackById } from '@/axios';
 import { useQuery } from '@tanstack/react-query';
 import StackCard from './stackCard';
 

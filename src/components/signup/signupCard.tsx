@@ -11,7 +11,7 @@ import SignupForm from './signupForm';
 
 export interface ISignupCardProps {}
 
-export default function SignupCard(props: ISignupCardProps) {
+export default function SignupCard() {
   return (
     <Card className="flex h-fit w-full max-w-96 flex-col justify-between">
       <CardHeader>

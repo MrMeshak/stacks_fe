@@ -2,7 +2,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
 export interface ISignupSuccessCardProps {}
 
-export default function SignupSuccessCard(props: ISignupSuccessCardProps) {
+export default function SignupSuccessCard() {
   return (
     <Card className="flex h-fit w-full max-w-[30rem] flex-col justify-between">
       <CardHeader>

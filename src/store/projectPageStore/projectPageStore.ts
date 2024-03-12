@@ -8,7 +8,7 @@ interface IProjectPageState {
   };
 }
 
-const useProjectPageStore = create<IProjectPageState>((set, get) => {
+const useProjectPageStore = create<IProjectPageState>((set) => {
   return {
     isSideBarOpen: true,
     actions: {

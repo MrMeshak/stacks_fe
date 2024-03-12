@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export interface ISignupSuccessPageProps {}
 
-export default function SignupSuccessPage(props: ISignupSuccessPageProps) {
+export default function SignupSuccessPage() {
   const navigate = useNavigate();
 
   useEffect(() => {

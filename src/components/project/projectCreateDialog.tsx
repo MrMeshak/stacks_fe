@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 export interface IProjectCreateDialogProps {}
 
-export default function ProjectCreateDialog(props: IProjectCreateDialogProps) {
+export default function ProjectCreateDialog() {
   const [open, setOpen] = useState(false);
 
   return (

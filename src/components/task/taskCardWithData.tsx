@@ -1,5 +1,5 @@
 import { Task, httpClient } from '@/axios';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import TaskCard from './taskCard';
 
 export interface ITaskCardWithDataProps {
@@ -7,30 +7,12 @@ export interface ITaskCardWithDataProps {
   taskId: string;
 }
 
-export default function TaskCardWithData({
-  taskId,
-  stackId,
-}: ITaskCardWithDataProps) {
-  const queryClient = useQueryClient();
+export default function TaskCardWithData({ taskId }: ITaskCardWithDataProps) {
   const taskQuery = useQuery({
     queryKey: ['tasks', taskId],
     queryFn: async () => {
       return await httpClient.get<Task>(`/tasks/${taskId}`);
     },
-    //   initialData: () => {
-    //     const task = queryClient
-    //       .getQueryData<AxiosResponse<Stack>>(['stacks', stackId])
-    //       ?.data.tasks.find((task) => task.id === taskId);
-
-    //     return (
-    //       task && {
-    //         data: task,
-    //       }
-    //     );
-    //   },
-    //   initialDataUpdatedAt: () =>
-    //     queryClient.getQueryState(['stacks', stackId])?.dataUpdatedAt,
-    // });
   });
 
   if (taskQuery.isLoading) {

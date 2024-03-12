@@ -1,7 +1,7 @@
 import { User, httpClient } from '@/axios';
 import { RiAccountCircleFill, RiLogoutCircleLine } from 'react-icons/ri';
 import { Button } from '../ui/button';
-import { QueryCache, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 export interface IProjectUserWidgetProps {

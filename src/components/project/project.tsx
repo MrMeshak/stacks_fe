@@ -1,10 +1,9 @@
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ProjectBoardWithData from './projectBoardWithData';
 import ProjectDndProvider from './projectDndProvider';
 import { useEffect } from 'react';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { fetchProjects, Project } from '@/axios';
-import { AxiosResponse } from 'axios';
 
 export interface IProjectProps {
   projectId: string | undefined;

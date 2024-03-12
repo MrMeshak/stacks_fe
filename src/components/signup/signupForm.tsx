@@ -9,7 +9,6 @@ import { useMutation } from '@tanstack/react-query';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -52,7 +51,7 @@ type SignupFormSchema = z.infer<typeof signupFormSchema>;
 
 export interface ISignupFormProps {}
 
-export default function SignupForm(props: ISignupFormProps) {
+export default function SignupForm() {
   const navigate = useNavigate();
 
   const signupMutation = useMutation({

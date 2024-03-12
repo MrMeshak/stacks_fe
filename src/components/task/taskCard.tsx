@@ -4,8 +4,6 @@ import { CSS } from '@dnd-kit/utilities';
 import TaskControlBar from './taskControlBar';
 import TaskDialog from './taskDialog';
 import { useState } from 'react';
-import { RiMore2Fill } from 'react-icons/ri';
-import { Button } from '../ui/button';
 
 export interface ITaskCardProps {
   taskData: Task;
