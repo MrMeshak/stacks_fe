@@ -7,21 +7,9 @@ export interface IHomePageProps {}
 
 export default function HomePage() {
   const navigate = useNavigate();
-
-  useQuery({
-    queryKey: ['users', 'me'],
-    queryFn: async () => {
-      return await httpClient.get<User>('/users/me');
-    },
-  });
-
   useEffect(() => {
     navigate('/login');
   }, []);
 
-  return (
-    <div>
-      <h3>Home Page</h3>
-    </div>
-  );
+  return <div></div>;
 }
