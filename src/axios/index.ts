@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const httpClient = axios.create({
   baseURL: import.meta.env.VITE_STACKS_BE_BASE_URL,
-  timeout: 3000,
+  timeout: 5000,
   withCredentials: true,
 });
 
