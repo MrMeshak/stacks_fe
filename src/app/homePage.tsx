@@ -8,7 +8,7 @@ export interface IHomePageProps {}
 export default function HomePage() {
   const navigate = useNavigate();
 
-  const meQuery = useQuery({
+  useQuery({
     queryKey: ['users', 'me'],
     queryFn: async () => {
       return await httpClient.get<User>('/users/me');
