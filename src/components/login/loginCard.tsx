@@ -13,7 +13,7 @@ export interface ILoginCardProps {}
 
 export default function LoginCard() {
   return (
-    <Card className="flex h-fit w-full max-w-96 flex-col justify-between">
+    <Card className="m-4 flex h-fit w-full max-w-96 flex-col justify-between">
       <CardHeader>
         <CardTitle>Login</CardTitle>
         <CardDescription>Login to your account</CardDescription>
