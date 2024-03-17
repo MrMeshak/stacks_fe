@@ -24,7 +24,7 @@ export default function TaskCreateDialog({ stackId }: ITaskCreateDialogProps) {
           <RiAddFill className="h-5 w-5 text-primary" />
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent onPointerDown={(event) => event.stopPropagation()}>
         <DialogHeader>
           <DialogTitle>Create Task</DialogTitle>
         </DialogHeader>

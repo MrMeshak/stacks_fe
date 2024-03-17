@@ -37,11 +37,13 @@ export default function TaskCard({ taskData }: ITaskCardProps) {
         style={style}
         className="mb-4 rounded-sm border-[1px] opacity-0"
       >
-        <div>
-          <h3 className="p-3">{taskData.title}</h3>
+        <div className="p-3">
+          <h3 className=" font text-wrap font-medium">{taskData.title}</h3>
         </div>
         <div className="p-3 text-sm font-light">
-          <p>{taskData.description}</p>
+          <p className="whitespace-normal text-wrap font-light text-slate-400">
+            {taskData.description}
+          </p>
         </div>
         <TaskControlBar taskData={taskData} />
       </div>
@@ -59,10 +61,12 @@ export default function TaskCard({ taskData }: ITaskCardProps) {
         className={`mb-4 rounded-sm border-[1px] bg-white ${taskData.completed ? 'border-green-700' : ''} `}
       >
         <div className="p-3">
-          <h3>{taskData.title}</h3>
+          <h3 className=" font text-wrap font-medium">{taskData.title}</h3>
         </div>
         <div className="p-3 text-sm font-light">
-          <p>{taskData.description}</p>
+          <p className="whitespace-normal text-wrap font-light text-slate-400">
+            {taskData.description}
+          </p>
         </div>
         <TaskControlBar taskData={taskData} />
       </div>

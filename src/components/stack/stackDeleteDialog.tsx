@@ -49,7 +49,7 @@ export default function StackDeleteDialog({
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      <DialogContent>
+      <DialogContent onPointerDown={(event) => event.stopPropagation()}>
         <DialogHeader>
           <DialogTitle>Delete Stack</DialogTitle>
           <DialogDescription>

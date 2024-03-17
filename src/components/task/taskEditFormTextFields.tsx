@@ -129,7 +129,7 @@ export default function TaskEditFormTextFields({
                   <FormControl>
                     <AutosizeTextarea
                       {...field}
-                      className="resize-none text-xl hover:border disabled:cursor-default disabled:border-none"
+                      className="resize-none text-xl font-light text-slate-400 hover:border disabled:cursor-default disabled:border-none disabled:opacity-100"
                       tabIndex={-1}
                       disabled={isDisabled}
                     />

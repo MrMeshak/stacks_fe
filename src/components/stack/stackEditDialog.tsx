@@ -20,7 +20,7 @@ export default function StackEditDialog({
 }: IStackEditDialogProps) {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      <DialogContent>
+      <DialogContent onPointerDown={(event) => event.stopPropagation()}>
         <DialogHeader>
           <DialogTitle>Edit Stack</DialogTitle>
         </DialogHeader>
