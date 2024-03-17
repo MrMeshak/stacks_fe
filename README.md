@@ -11,6 +11,11 @@ Stacks is a kanban board website that helps you to organize your work or play.
 - Email: demo@gmail.com
 - Password: Password#1
 
+**ProjectPage**
+
+<img width="1799" alt="image" src="https://github.com/MrMeshak/stacks_fe/assets/94204153/19dfb0c7-0ac2-4f15-a1de-4eb0f555c40e">
+
+
 ## Features
 
 _Authentication_
