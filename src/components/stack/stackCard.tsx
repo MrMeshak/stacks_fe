@@ -44,7 +44,7 @@ export default function StackCard({ stackData }: IStackCardProps) {
     <div
       ref={setNodeRef}
       style={style}
-      className="flex w-80 flex-col justify-between"
+      className="flex w-80 touch-none flex-col justify-between"
     >
       <div {...attributes} {...listeners} className="mb-4 w-full">
         <div className=" flex w-full justify-between rounded-sm border-[1px] border-slate-200 bg-white px-2 py-2">

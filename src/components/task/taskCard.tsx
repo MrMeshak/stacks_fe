@@ -58,7 +58,7 @@ export default function TaskCard({ taskData }: ITaskCardProps) {
         style={style}
         {...attributes}
         {...listeners}
-        className={`mb-4 rounded-sm border-[1px] bg-white ${taskData.completed ? 'border-green-700' : ''} `}
+        className={`mb-4 touch-none rounded-sm border-[1px] bg-white ${taskData.completed ? 'border-green-700' : ''} `}
       >
         <div className="p-3">
           <h3 className=" font text-wrap font-medium">{taskData.title}</h3>
