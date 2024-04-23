@@ -4,11 +4,11 @@ Stacks is a kanban board website that helps you to organize your work or play.
 
 ## Demo & Snippets
 
-[https://stacks.meshakbain.com](https://stacks.meshakbain.com)
+[https://stacks-fe.up.railway.app](https://stacks-fe.up.railway.app)
 
 **Demo Login**
 
-- Email: demo@gmail.com
+- Email: demo@test.com
 - Password: Password#1
 
 **ProjectPage**
