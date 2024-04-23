@@ -46,7 +46,7 @@ _General_
 
 - **NestJs**: Through this project I also wanted to improve my NestJS knowledge and I feel I have a solid understanding of the fundamentals (dependency injection, decorators, error handling, classValidator, classTransformer, middleware, pipes, interceptors, testing, RESTful api, MVC design pattern etc)
 
-- **Drag n Drop**: This is my first time implementing drag and drop into a project, which was exciting, but this was probably the most challenging part of the project. I found that implementing a single drag and drop was simple but nested drag and drop was quite complex with many
+- **Drag n Drop**: This is my first time implementing drag and drop into a project, which was exciting, but this was probably the most challenging part of the project. I found that implementing a single drag and drop was simple but nested drag and drop was quite complex.
 
 - **Drizzle ORM**: I have been wanting to try out drizzle ORM for a while, it is really enjoyable and easy to use. I love the fact that you can drop back to raw sql if needed and it is a lot more performant than prisma. Would recommend if you haven't tried it yet.
 
