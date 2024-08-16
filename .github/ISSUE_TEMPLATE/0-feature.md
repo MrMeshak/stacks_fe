@@ -19,9 +19,7 @@ Explain the pain you are experiencing.  This is **WHY** this must be done.
 <!-- Describe the solution you'd like -->
 
 ### Acceptance Criteria
-Acceptance Criteria defines the requirements that must be met for the story to be completed.  This is **WHAT** must be done.
-
-See https://www.ssw.com.au/rules/acceptance-criteria.
+Acceptance Criteria defines the requirements that must be met for the story to be completed. 
 
 1. {{ AC 1 }}
 
