@@ -23,9 +23,8 @@ Cc:
 
 ### Tasks
 ```[tasklist]
-- [x] {{ TASK 1 }}
+- [ ] {{ TASK 1 }}
 ```
-
 ### More Information
 <!-- Add any other context here. -->
 
