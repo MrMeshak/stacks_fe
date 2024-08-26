@@ -6,8 +6,6 @@ labels: 'feature'
 assignees: ''
 
 ---
-Cc:
-  
 ### Summary
 
 ### Motivation
