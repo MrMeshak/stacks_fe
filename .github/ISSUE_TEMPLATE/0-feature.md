@@ -13,9 +13,9 @@ assignees: ''
 ### Implementation
 
 ### Tasks
-```[tasklist]
+
 - [ ] {{ TASK 1 }}
-```
+
 ### More Information
 
 ### Screenshots
