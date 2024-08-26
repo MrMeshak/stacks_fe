@@ -6,7 +6,7 @@ labels: 'Type: Refactor'
 assignees: ''
 
 ---
-### Pain
+### Summary
 
 ### What code could be improved?
 
