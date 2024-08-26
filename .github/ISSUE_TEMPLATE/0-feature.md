@@ -14,7 +14,7 @@ assignees: ''
 
 ### Tasks
 
-- [ ] {{ TASK 1 }}
+- [ ] task
 
 ### More Information
 
