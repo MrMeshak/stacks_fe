@@ -14,10 +14,6 @@ assignees: ''
 - [ ] ...
 - [ ] ...
 
-### Acceptance Criteria
-- [ ] Meets Definition of Done - {{ LINK }}
-- [ ] ...
-
 ### More Information
 
 ### Screenshots
